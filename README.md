@@ -107,6 +107,15 @@ Docker 与虚拟机、认证账号、日志与告警……另外还提供两个"
 2. 地址填本仓库，类型选「集成」，添加；
 3. 在 HACS 里搜索 `iKuai` 并下载，然后**重启 Home Assistant**。
 
+> **安装包结构（`zip_release`）**：`hacs.json` 里启用了 `zip_release` +
+> `filename: ikuai.zip`，HACS 会把 Release 资产**原样解压到
+> `config/custom_components/ikuai/`**，因此 `ikuai.zip` 内是集成文件本身
+> （`manifest.json`、`__init__.py`、`translations/`…在第一层），
+> **不再套 `custom_components/` 或 `ikuai/`**。v1.1.1 的资产曾误打包成
+> `custom_components/ikuai/...`，会在 HA 里多套一层；该资产**已于 2026-11-04
+> 替换为根布局版本**（大小 201,396 字节）。若 HACS 仍拉到旧包（HACS 有缓存），
+> 在 HACS 里删除后重新下载即可。
+
 ### 手动
 
 把 `custom_components/ikuai` 整个目录复制到你的 HA 配置目录下：
